@@ -1,5 +1,5 @@
-import type { TaskStateModel } from '../../models/TaskStateModels';
-import { formatScondsToMinutes } from '../../utils/formatSecondsToMinutes';
+import type { TaskStateModel } from '../../utils/formatDate';
+import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { initialTaskState } from './initialTaskState';
 import { TaskActionTypes, type TaskActionModel } from './taskActions';
@@ -10,17 +10,6 @@ export function taskReducer(
 ): TaskStateModel {
   switch (action.type) {
     case TaskActionTypes.START_TASK: {
-      // setState(prevState => {
-      //   return {
-      //     ...prevState,
-      //     config: { ...prevState.config },
-      //     activeTask: newTask,
-      //     currentCycle: nextCycle,
-      //     secondsRemaining, // Conferir
-      //     formattedSecondsRemaining: formatScondsToMinutes(secondsRemaining), // Conferir
-      //     tasks: [...prevState.tasks, newTask],
-      //   };
-      // });
       const newTask = action.payload;
       const nextCycle = getNextCycle(state.currentCycle);
       const secondsRemaining = newTask.duration * 60;
@@ -30,7 +19,7 @@ export function taskReducer(
         activeTask: newTask,
         currentCycle: nextCycle,
         secondsRemaining,
-        formattedSecondsRemaining: formatScondsToMinutes(secondsRemaining), // Conferir
+        formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
         tasks: [...state.tasks, newTask],
       };
     }
@@ -48,7 +37,6 @@ export function taskReducer(
         }),
       };
     }
-
     case TaskActionTypes.COMPLETE_TASK: {
       return {
         ...state,
@@ -63,7 +51,6 @@ export function taskReducer(
         }),
       };
     }
-
     case TaskActionTypes.RESET_STATE: {
       return { ...initialTaskState };
     }
@@ -71,13 +58,16 @@ export function taskReducer(
       return {
         ...state,
         secondsRemaining: action.payload.secondsRemaining,
-        formattedSecondsRemaining: formatScondsToMinutes(
+        formattedSecondsRemaining: formatSecondsToMinutes(
           action.payload.secondsRemaining,
         ),
       };
     }
+    case TaskActionTypes.CHANGE_SETTINGS: {
+      return { ...state, config: { ...action.payload } };
+    }
   }
 
-  // Reduce sempre deve retornar o estado
+  // Sempre deve retornar o estado
   return state;
 }

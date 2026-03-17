@@ -1,4 +1,4 @@
-import type { TaskStateModel } from '../../models/TaskStateModels';
+import type { TaskStateModel } from '../../utils/formatDate';
 
 export const initialTaskState: TaskStateModel = {
   tasks: [],

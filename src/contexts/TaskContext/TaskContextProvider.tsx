@@ -5,7 +5,7 @@ import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 import { TaskActionTypes } from './taskActions';
 import { loadBeep } from '../../utils/loadBeep';
-import type { TaskStateModel } from '../../models/TaskStateModels';
+import type { TaskStateModel } from '../../utils/formatDate';
 
 type TaskContextProividerProps = {
   children: React.ReactNode;

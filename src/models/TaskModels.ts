@@ -1,4 +1,4 @@
-import type { TaskStateModel } from './TaskStateModels';
+import type { TaskStateModel } from '../utils/formatDate';
 
 export type TaskModel = {
   id: string;

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { TaskStateModel } from '../../models/TaskStateModels';
+import type { TaskStateModel } from '../../utils/formatDate';
 import { initialTaskState } from './initialTaskState';
 import type { TaskActionModel } from './taskActions';
 

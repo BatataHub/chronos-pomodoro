@@ -1,4 +1,4 @@
-import type { TaskStateModel } from '../models/TaskStateModels';
+import type { TaskStateModel } from '../utils/formatDate';
 
 let instance: TimerWorkerManager | null = null;
 
